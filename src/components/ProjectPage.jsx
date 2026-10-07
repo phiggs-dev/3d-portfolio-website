@@ -72,7 +72,13 @@ const ProjectPage = () => {
         className="text-secondary text-[17px]"
         dangerouslySetInnerHTML={{ __html: project.description }}
       />
-      {project.source_code_link !== "None" && (
+      {project.media_note && <p className="text-secondary text-sm mt-3">{project.media_note}</p>}
+      {project.live_url && (
+        <a href={project.live_url} target="_blank" rel="noopener noreferrer" className="inline-block mt-5 text-accent underline underline-offset-4">
+          Visit website<span className="sr-only"> (opens in a new tab)</span>
+        </a>
+      )}
+      {project.source_code_link && project.source_code_link !== "None" && (
         <div className="mt-5">
           <a
             href={project.source_code_link}
@@ -89,7 +95,17 @@ const ProjectPage = () => {
       {/* Container for video and images */}
       <div className="flex flex-col items-center w-full max-w-screen-lg mx-auto mt-5">
         {/* YouTube embedded video section */}
-        {project.video && (
+        {project.demo_video ? (
+          <video
+            src={project.demo_video}
+            poster={project.image}
+            controls
+            playsInline
+            preload="none"
+            aria-label={`${project.name} demo`}
+            className="w-full aspect-video object-contain rounded-2xl bg-black"
+          />
+        ) : project.video && (
           <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
             <iframe
               width="1056"

@@ -25,14 +25,14 @@ const Navbar = () => {
           <div className="flex items-end gap-2">
             <img src={logo} alt="logo" className="object-contain w-10 h-10" />
             <p className="text-accent text-[18px] font-medium cursor-pointer flex">
-              Scott&nbsp;Lopez
+              Scott&nbsp;N.&nbsp;Lopez
               {/* <span className="font-light">
                 &nbsp;|&nbsp;Game&nbsp;Engineer
               </span> */}
             </p>
           </div>
         </Link>
-        <ul className="flex-row hidden gap-10 list-none sm:flex">
+        <ul className="flex-row hidden gap-6 list-none lg:flex">
           {navLinks.map((link) => (
             <li
               key={link.id}
@@ -41,12 +41,12 @@ const Navbar = () => {
               } hover:text-white text-[18px] font-medium cursor-pointer`}
               onClick={() => setActive(link.title)}
             >
-              <a href={`#${link.id}`}>{link.title}</a>
+              <Link to={link.path}>{link.title}</Link>
             </li>
           ))}
         </ul>
 
-        <div className="flex items-center justify-end flex-1 sm:hidden">
+        <div className="flex items-center justify-end flex-1 lg:hidden">
           <img
             src={toggle ? close : menu}
             alt="menu"
@@ -70,7 +70,7 @@ const Navbar = () => {
                     setActive(link.title);
                   }}
                 >
-                  <a href={`#${link.id}`}>{link.title}</a>
+                  <Link to={link.path}>{link.title}</Link>
                 </li>
               ))}
             </ul>

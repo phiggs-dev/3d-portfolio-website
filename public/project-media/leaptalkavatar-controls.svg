@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-label="LeapTalkAvatar: application controls">
+<rect width="1200" height="900" rx="24" fill="#100d25"/>
+<g font-family="Arial, sans-serif">
+<text x="70" y="92" fill="#915eff" font-size="20" letter-spacing="3">IMPLEMENTATION OVERVIEW</text>
+<text x="70" y="156" fill="#ffffff" font-size="44" font-weight="700">LeapTalkAvatar: application controls</text>
+<text x="70" y="201" fill="#aaa6c3" font-size="22">A local, single-session application</text>
+<rect x="70" y="258" width="510" height="205" rx="20" fill="#1d1538" stroke="#915eff" stroke-opacity=".6"/>
+<text x="96" y="302" fill="#915eff" font-size="18">01</text>
+<text x="96" y="342" fill="#ffffff" font-size="27" font-weight="700">Portrait handling</text>
+<text x="96" y="381" fill="#ccc5df" font-size="21">Fit the full image into the renderer</text>
+<text x="96" y="408" fill="#ccc5df" font-size="21">canvas and preserve its output</text>
+<text x="96" y="435" fill="#ccc5df" font-size="21">proportions.</text>
+<rect x="620" y="258" width="510" height="205" rx="20" fill="#1d1538" stroke="#915eff" stroke-opacity=".6"/>
+<text x="646" y="302" fill="#915eff" font-size="18">02</text>
+<text x="646" y="342" fill="#ffffff" font-size="27" font-weight="700">Visual continuity</text>
+<text x="646" y="381" fill="#ccc5df" font-size="21">Optionally start a new reply from the</text>
+<text x="646" y="408" fill="#ccc5df" font-size="21">final frame of the previous video.</text>
+<rect x="70" y="503" width="510" height="205" rx="20" fill="#1d1538" stroke="#915eff" stroke-opacity=".6"/>
+<text x="96" y="547" fill="#915eff" font-size="18">03</text>
+<text x="96" y="587" fill="#ffffff" font-size="27" font-weight="700">Character and voice</text>
+<text x="96" y="626" fill="#ccc5df" font-size="21">Load character sheets and reference</text>
+<text x="96" y="653" fill="#ccc5df" font-size="21">speech through separate UI controls.</text>
+<rect x="620" y="503" width="510" height="205" rx="20" fill="#1d1538" stroke="#915eff" stroke-opacity=".6"/>
+<text x="646" y="547" fill="#915eff" font-size="18">04</text>
+<text x="646" y="587" fill="#ffffff" font-size="27" font-weight="700">Resource coordination</text>
+<text x="646" y="626" fill="#ccc5df" font-size="21">Unload the local chat model before</text>
+<text x="646" y="653" fill="#ccc5df" font-size="21">rendering; retain the avatar renderer</text>
+<text x="646" y="680" fill="#ccc5df" font-size="21">between turns.</text>
+<text x="70" y="795" fill="#aaa6c3" font-size="21">Application features shown in the current source. This is a local prototype, not a</text>
+<text x="70" y="824" fill="#aaa6c3" font-size="21">hosted multi-user service.</text>
+</g></svg>

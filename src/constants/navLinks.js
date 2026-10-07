@@ -11,13 +11,23 @@ const navLinks = [
   },
   {
     id: "work",
-    title: "Work",
+    title: "Experience",
     path: "/#work",
+  },
+  {
+    id: "education",
+    title: "Education",
+    path: "/#education",
   },
   {
     id: "contact",
     title: "Contact",
     path: "/#contact",
+  },
+  {
+    id: "resume",
+    title: "Resume",
+    path: "/resume",
   },
 ];
 

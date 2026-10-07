@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import ResumePage from "./components/ResumePage";
+import Footer from "./components/Footer";
 import { Routes, Route, useLocation } from "react-router-dom";
 import {
   About,
@@ -50,9 +52,9 @@ const App = () => {
                 <Hero />
               </div>
               <About />
+              <ServiceCard />
               <Tech />
               <Projects />
-              <ServiceCard />
               <Experience />
               {/* <Feedbacks /> */}
               <div className="relative z-0">
@@ -65,7 +67,9 @@ const App = () => {
 
         {/* Dynamic route for individual project pages */}
         <Route path="/projects/:projectId" element={<ProjectPage />} />
+        <Route path="/resume" element={<ResumePage />} />
       </Routes>
+      <Footer />
     </div>
   );
 };

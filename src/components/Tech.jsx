@@ -16,7 +16,7 @@ const Tech = () => {
   }, []);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(max-width: 500px');
+    const mediaQuery = window.matchMedia('(max-width: 500px)');
     setIsMobile(mediaQuery.matches);
 
     const handleMediaQueryChange = (event) => {
@@ -61,14 +61,19 @@ const Tech = () => {
   }
 
   return (
-    <div className="w-full max-w-5xl mx-auto my-8 px-4 flex flex-col items-center justify-center">
-      <div className="flex flex-row flex-wrap justify-center gap-7">
+    <section aria-labelledby="technologies-heading" className={`${styles.padding} max-w-7xl mx-auto relative`}>
+      <p className={`${styles.sectionSubText} !text-accent`}>Technologies</p>
+      <h2 id="technologies-heading" className={styles.sectionHeadText}>Tools I work with.</h2>
+      <ul className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 justify-items-center gap-x-4 gap-y-8 mt-10">
         {limitedTechArray.map((technology) => (
-          <div className="w-28 h-28" key={technology.name}>
-            <BallCanvas icon={technology.icon} />
-          </div>
+          <li className="w-24 sm:w-28 text-center" key={technology.name}>
+            <div className="h-24 sm:h-28" aria-hidden="true">
+              <BallCanvas icon={technology.icon} />
+            </div>
+            <p className="text-secondary text-[13px] sm:text-[14px] font-medium mt-2">{technology.name}</p>
+          </li>
         ))}
-      </div>
+      </ul>
 
       <div className="mt-1 flex flex-col justify-center items-center">
         {/* Down Arrow Icon */}
@@ -91,7 +96,7 @@ const Tech = () => {
           </a>
         )}
       </div>
-    </div>
+    </section>
   );
 };
 

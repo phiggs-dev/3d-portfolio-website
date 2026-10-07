@@ -44,6 +44,8 @@ import shopify from "./company/shopify.png";
 import starbucks from "./company/starbucks.png";
 import tesla from "./company/tesla.png";
 // added
+import eline from "./company/eline.png";
+import logitech from "./company/logitech.png";
 import incitevr from "./company/incitevr.png";
 import glimpse from "./company/glimpse.png";
 import usv from "./company/usv.png";
@@ -155,6 +157,8 @@ export {
   colorado,
   glimpse,
   incitevr,
+  eline,
+  logitech,
   // Projects
   brainstem,
   brainstem1,

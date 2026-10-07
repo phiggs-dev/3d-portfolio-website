@@ -4,6 +4,81 @@
 @tailwind components;
 @tailwind utilities;
 
+.contact-input {
+  @apply w-full bg-tertiary py-4 px-5 text-white placeholder:text-secondary rounded-lg border border-white/10 outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-colors;
+}
+
+.vertical-timeline.work-timeline::before {
+  @apply bg-accent;
+}
+
+.work-timeline .vertical-timeline-element-date {
+  @apply text-accent opacity-100;
+}
+
+.work-timeline .vertical-timeline-element-content {
+  box-shadow: 0 3px 0 theme('colors.accent');
+}
+
+.work-timeline .vertical-timeline-element-icon {
+  box-shadow: 0 0 0 4px theme('colors.accent'), inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+}
+
+@media only screen and (min-width: 1170px) {
+  .vertical-timeline.work-timeline.vertical-timeline--two-columns {
+    width: 100%;
+  }
+}
+
+.capability-card {
+  transition: box-shadow 250ms ease;
+}
+
+.capability-card:hover,
+.capability-card:focus-within {
+  box-shadow: 0 12px 45px rgba(145, 94, 255, 0.24);
+}
+
+.capability-surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 15% 0%, rgba(145, 94, 255, 0.18), transparent 65%);
+  opacity: 0.45;
+  transition: opacity 250ms ease;
+  pointer-events: none;
+}
+
+.capability-card:hover .capability-surface::before,
+.capability-card:focus-within .capability-surface::before {
+  opacity: 1;
+}
+
+.capability-icon {
+  background: rgba(145, 94, 255, 0.1);
+  border: 1px solid rgba(145, 94, 255, 0.28);
+  transition: filter 250ms ease, background-color 250ms ease;
+}
+
+.capability-card:hover .capability-icon,
+.capability-card:focus-within .capability-icon {
+  background: rgba(145, 94, 255, 0.2);
+  filter: drop-shadow(0 0 10px rgba(145, 94, 255, 0.5));
+}
+
+.capability-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .capability-card,
+  .capability-surface::before,
+  .capability-icon {
+    transition: none;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -40,19 +115,19 @@ html,
 }
 
 .violet-gradient {
-  background: #804dee;
-  background: linear-gradient(-90deg, #804dee 0%, rgba(60, 51, 80, 0) 100%);
+  background: theme('colors.accent');
+  background: linear-gradient(-90deg, theme('colors.accent') 0%, rgba(60, 51, 80, 0) 100%);
   background: -webkit-linear-gradient(
     -90deg,
-    #804dee 0%,
+    theme('colors.accent') 0%,
     rgba(60, 51, 80, 0) 100%
   );
 }
 
 .green-pink-gradient {
   background: "#00cea8";
-  background: linear-gradient(90.13deg, #00cea8 1.9%, #bf61ff 97.5%);
-  background: -webkit-linear-gradient(-90.13deg, #00cea8 1.9%, #bf61ff 97.5%);
+  background: linear-gradient(90.13deg, #00cea8 1.9%, theme('colors.accent') 97.5%);
+  background: -webkit-linear-gradient(-90.13deg, #00cea8 1.9%, theme('colors.accent') 97.5%);
 }
 
 .orange-text-gradient {
@@ -121,16 +196,16 @@ html,
 }
 
 .purple-text-gradient {
-  background: #7f00ff; /* fallback for old browsers */
+  background: theme('colors.accent'); /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to top,
-    #7f00ff,
-    #e100ff
+    theme('colors.accent'),
+    theme('colors.accent')
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
     to top,
-    #7f00ff,
-    #e100ff
+    theme('colors.accent'),
+    theme('colors.accent')
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

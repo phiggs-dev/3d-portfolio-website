@@ -1,18 +1,18 @@
-import { ue5black, unityblack, godotnotext, clang, cplus, csharp, python, javascript, reactjs, tailwind, nodejs, git } from "../assets";
+import { ue5, unityblack, godotnotext, typescript, cplus, csharp, python, javascript, reactjs, tailwind, nodejs, git } from "../assets";
 
 const technologies = [
-  { name: "Unreal Engine", icon: ue5black },
+  { name: "Unreal Engine", icon: ue5 },
   { name: "Unity", icon: unityblack },
-  { name: "Godot", icon: godotnotext },
-  { name: "C", icon: clang },
   { name: "C++", icon: cplus },
   { name: "C#", icon: csharp },
   { name: "Python", icon: python },
+  { name: "TypeScript", icon: typescript },
   { name: "JavaScript", icon: javascript },
-  { name: "React JS", icon: reactjs },
+  { name: "React", icon: reactjs },
   { name: "Tailwind CSS", icon: tailwind },
-  { name: "Node JS", icon: nodejs },
-  { name: "git", icon: git },
+  { name: "Node.js", icon: nodejs },
+  { name: "Git", icon: git },
+  { name: "Godot", icon: godotnotext },
 ];
 
 export default technologies;

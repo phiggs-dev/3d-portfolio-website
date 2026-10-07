@@ -24,7 +24,7 @@ const ProjectCard = ({ project, index }) => {
       </div>
     );
   }
-  const hasVideo = !!project.video;
+  const hasVideo = !!(project.video || project.demo_video);
   // Dynamically collect image1, image2, ... into a gallery array
   const galleryImages = Object.keys(project)
     .filter((key) => /^image\d+$/.test(key) && project[key])
@@ -45,6 +45,9 @@ const ProjectCard = ({ project, index }) => {
     return (
       <motion.div
         variants={fadeIn("up", "spring", index * 0.2, 0.75)}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.1 }}
         className="flex flex-col md:flex-row bg-tertiary rounded-2xl shadow-lg overflow-hidden hover:scale-[1.01] transition-transform p-4 min-h-[200px]"
       >
         {/* Left: Video (iframe embed like ProjectPage) */}
@@ -130,13 +133,26 @@ const ProjectCard = ({ project, index }) => {
     <>
       <motion.div
         variants={fadeIn("up", "spring", index * 0.2, 0.75)}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.1 }}
         className="flex flex-col md:flex-row bg-tertiary rounded-2xl shadow-lg overflow-hidden hover:scale-[1.01] transition-transform p-4 min-h-[200px]"
       >
         <div className="flex flex-col w-full gap-4 md:flex-row">
           {/* Left: Video or Main Image + Description */}
           <div className="flex flex-col items-start w-full gap-4 md:w-1/2">
             <div className="flex items-center justify-center w-full p-2 bg-black aspect-video rounded-xl">
-              {hasVideo ? (
+              {project.demo_video ? (
+                <video
+                  src={project.demo_video}
+                  poster={project.image}
+                  controls
+                  playsInline
+                  preload="none"
+                  aria-label={`${project.name} demo`}
+                  className="w-full aspect-video object-contain rounded-lg"
+                />
+              ) : hasVideo ? (
                 <div
                   className="relative w-full h-0"
                   style={{ paddingTop: "56.25%" }}
@@ -157,6 +173,7 @@ const ProjectCard = ({ project, index }) => {
                   src={project.image}
                   alt={project.name}
                   className="object-cover w-full h-full rounded-lg"
+                  style={{ objectFit: project.image_fit || "cover" }}
                   loading="lazy"
                   width="400"
                   height="225"
@@ -183,6 +200,9 @@ const ProjectCard = ({ project, index }) => {
                   __html: project.description || "No description available.",
                 }}
               />
+              {project.media_note && (
+                <p className="text-sm text-secondary mt-3">{project.media_note}</p>
+              )}
               <div className="flex flex-wrap gap-2 mt-4">
                 {project.tags && project.tags.length > 0 ? (
                   project.tags.map((tag) => (
@@ -201,6 +221,11 @@ const ProjectCard = ({ project, index }) => {
               >
                 View Details
               </Link>
+              {project.live_url && (
+                <a href={project.live_url} target="_blank" rel="noopener noreferrer" className="inline-block ml-4 text-accent underline underline-offset-4">
+                  Visit website<span className="sr-only"> (opens in a new tab)</span>
+                </a>
+              )}
             </div>
           </div>
           {/* Right: Gallery Images */}
@@ -282,7 +307,11 @@ ProjectCard.propTypes = {
       })
     ).isRequired,
     image: PropTypes.string.isRequired,
+    image_fit: PropTypes.oneOf(["cover", "contain"]),
     video: PropTypes.string,
+    demo_video: PropTypes.string,
+    media_note: PropTypes.string,
+    live_url: PropTypes.string,
     video_title: PropTypes.string, // Add this for lint
     gallery: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
@@ -291,19 +320,34 @@ ProjectCard.propTypes = {
 
 ProjectCard.displayName = "ProjectCard";
 
+const PROJECTS_PER_BATCH = 2;
+const projectFilters = [
+  { value: "all", label: "All" },
+  { value: "web", label: "Web" },
+  { value: "ai-tools", label: "AI & Tools" },
+  { value: "games", label: "Games" },
+];
+
 const Projects = () => {
-  // Debug: Show More button does not work
-  // Start by showing 3 projects, but don't rely on a constant
-  const [visibleCount, setVisibleCount] = useState(5); // Set to # of projects to show initially
+  const [selectedFilter, setSelectedFilter] = useState("all");
+  const [visibleCount, setVisibleCount] = useState(PROJECTS_PER_BATCH);
   // Defensive: ensure projects is a real array
   const allProjects = Array.isArray(projects) ? projects : [];
-  const visibleProjects = allProjects.slice(0, visibleCount);
-  const hasMore = visibleCount < allProjects.length;
+  const filteredProjects = selectedFilter === "all"
+    ? allProjects
+    : allProjects.filter((project) => project.category === selectedFilter);
+  const visibleProjects = filteredProjects.slice(0, visibleCount);
+  const hasMore = visibleCount < filteredProjects.length;
+
+  const selectFilter = (filter) => {
+    setSelectedFilter(filter);
+    setVisibleCount(PROJECTS_PER_BATCH);
+  };
 
   return (
     <>
       <motion.div variants={textVariant()}>
-        <p className={styles.sectionSubText}>My work</p>
+        <p className={`${styles.sectionSubText} !text-accent`}>My work</p>
         <h2 className={styles.sectionHeadText}>Projects.</h2>
       </motion.div>
       <div className="flex w-full">
@@ -311,15 +355,31 @@ const Projects = () => {
           variants={fadeIn("", "", 0.1, 1)}
           className="mt-3 mb-12 text-secondary text-[17px] max-w-3xl leading-[30px]"
         >
-          These projects highlight my skills and experience through hands-on
-          examples of my work. Each project includes a brief overview, with
-          links to code repositories and live demos, showcasing my ability to
-          tackle complex challenges, adapt to diverse technologies, and manage
-          projects efficiently. Explore my portfolio to see my approach to
-          problem-solving and development in action.
+          A selection of my work in web applications, AI integrations, tools, and
+          games. Explore the demos, screenshots, and project details to see what
+          I built and how it works.
         </motion.p>
       </div>
-      <div className="flex flex-col w-full">
+      <div role="group" aria-label="Filter projects" className="flex flex-wrap gap-3 mb-6">
+        {projectFilters.map((filter) => (
+          <button
+            key={filter.value}
+            type="button"
+            aria-pressed={selectedFilter === filter.value}
+            aria-controls="project-results"
+            onClick={() => selectFilter(filter.value)}
+            className={`px-5 py-2 rounded-lg border font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent ${selectedFilter === filter.value ? "bg-accent border-accent text-white" : "bg-tertiary border-accent/40 text-secondary hover:text-white hover:border-accent"}`}
+          >
+            {filter.label}
+          </button>
+        ))}
+      </div>
+      <p role="status" className="text-secondary text-sm mb-6">
+        {filteredProjects.length === 0
+          ? "No projects in this category yet."
+          : `Showing ${visibleProjects.length} of ${filteredProjects.length} projects`}
+      </p>
+      <div id="project-results" className="flex flex-col w-full">
         {/* Projects List: Single column, full width */}
         <div className="flex flex-col w-full max-w-screen-xl gap-8 mx-auto">
           {visibleProjects.map((project, index) => (
@@ -329,10 +389,12 @@ const Projects = () => {
         {/* Show More Button */}
         {hasMore && (
           <button
-            onClick={() => setVisibleCount((prev) => prev + 3)}
-            className="px-6 py-3 mt-8 text-lg font-semibold text-white transition-colors rounded-lg shadow-md bg-primary hover:bg-secondary"
+            type="button"
+            onClick={() => setVisibleCount((previousCount) => previousCount + PROJECTS_PER_BATCH)}
+            aria-controls="project-results"
+            className="self-center px-6 py-3 mt-8 text-lg font-semibold text-white transition-colors rounded-lg shadow-md bg-accent hover:bg-accent/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
           >
-            Show More
+            Show more projects
           </button>
         )}
       </div>

@@ -10,6 +10,8 @@ import { isWebGLSupported } from '../utils/webgl'
 
 const Contact = () => {
   const formRef = useRef();
+  const submitting = useRef(false);
+  const [status, setStatus] = useState('');
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -28,7 +30,14 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (submitting.current) return;
+    if (!form.name.trim() || !form.message.trim()) {
+      setStatus('Please enter your name and a message.');
+      return;
+    }
+    submitting.current = true;
     setLoading(true);
+    setStatus('Sending your message…');
 
     emailjs.send(
       'service_80ite8f',
@@ -44,7 +53,8 @@ const Contact = () => {
     )
       .then(() => {
         setLoading(false);
-        alert('Thank you. I will get back to you as soon as possible.');
+        submitting.current = false;
+        setStatus('Thank you. Your message has been sent.');
 
         setForm({
           name: '',
@@ -56,7 +66,8 @@ const Contact = () => {
 
         console.log(error);
 
-        alert('Something went wrong.')
+        submitting.current = false;
+        setStatus('Your message could not be sent. Please email me directly using the link above.');
       })
   }
 
@@ -73,75 +84,53 @@ const Contact = () => {
 
     return () => {
       mediaQuery.removeEventListener('change', handleMediaQueryChange);
-    }
+    };
   }, []);
 
   return (
-    <div className="xl:mt-12 xl:flex-row flex-col-reverse flex gap-10 overflow-hidden">
-      <motion.div
-        variants={slideIn("left", "tween", 0.2, 1)}
-        className={`${webGLSupported && !isMobile ? 'flex-[0.75]' : 'flex-1'} bg-black-100 p-8 rounded-2xl`}
-      >
-        <p className={styles.sectionSubText}>Get in touch</p>
-        <h3 className={styles.sectionHeadText}>Contact.</h3>
-
-        <form
-          ref={formRef}
-          onSubmit={handleSubmit}
-          className="mt-12 flex flex-col gap-8"
-        >
-          <label className="flex flex-col">
-            <span className="text-white font-medium mb-4">Your Name</span>
-            <input
-              type="text"
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-              placeholder="What's your name?"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outlined-none border-none font-medium"
-            />
-          </label>
-          <label className="flex flex-col">
-            <span className="text-white font-medium mb-4">Your Email</span>
-            <input
-              type="email"
-              name="email"
-              value={form.email}
-              onChange={handleChange}
-              placeholder="What's your email?"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outlined-none border-none font-medium"
-            />
-          </label>
-          <label className="flex flex-col">
-            <span className="text-white font-medium mb-4">Your Message</span>
-            <textarea
-              rows="7"
-              name="message"
-              value={form.message}
-              onChange={handleChange}
-              placeholder="What do you want to say?"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outlined-none border-none font-medium"
-            />
-          </label>
-
-          <button
-            type="submit"
-            className="bg-tertiary py-3 px-8 outline-none w-fit text-white font-bold shadow-md shadow-primary rounded-xl"
-          >
-            {loading ? 'Sending...' : 'Send'}
-          </button>
-        </form>
-      </motion.div>
-
-      {webGLSupported && !isMobile && (
+    <>
+      <div>
+        <p className={`${styles.sectionSubText} !text-accent`}>Get in touch</p>
+        <h2 className={styles.sectionHeadText}>Let’s talk.</h2>
+        <p className="mt-5 text-secondary text-[17px] leading-7 max-w-2xl">
+          Open to software engineering opportunities in and around Orange County, and remotely.
+        </p>
+        <div className="mt-5 flex flex-wrap gap-x-6 gap-y-3 text-white">
+          <a href="mailto:scottnlopez60@gmail.com" className="underline underline-offset-4 hover:text-accent">scottnlopez60@gmail.com</a>
+          <a href="https://www.linkedin.com/in/scott-lopez-622bb832/" className="underline underline-offset-4 hover:text-accent">Connect on LinkedIn</a>
+        </div>
+      </div>
+      <div className="mt-10 xl:flex-row flex-col flex gap-10">
         <motion.div
-          variants={slideIn("right", "tween", 0.2, 1)}
-          className="xl:flex-1 xl:h-auto md:h-[550px] h-[350px]"
+          variants={slideIn("left", "tween", 0.2, 1)}
+          className={`${webGLSupported && !isMobile ? 'flex-[0.9]' : 'flex-1'} min-w-0 bg-black-100 border border-accent/20 p-6 sm:p-8 rounded-2xl`}
         >
-          <EarthCanvas />
+          <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-6" aria-busy={loading}>
+            <label className="flex flex-col gap-3">
+              <span className="text-white font-medium">Your name</span>
+              <input type="text" name="name" autoComplete="name" required maxLength={120} value={form.name} onChange={handleChange} placeholder="Your name" className="contact-input" />
+            </label>
+            <label className="flex flex-col gap-3">
+              <span className="text-white font-medium">Your email</span>
+              <input type="email" name="email" autoComplete="email" required maxLength={254} value={form.email} onChange={handleChange} placeholder="you@example.com" className="contact-input" />
+            </label>
+            <label className="flex flex-col gap-3">
+              <span className="text-white font-medium">Message</span>
+              <textarea rows={6} name="message" required maxLength={5000} value={form.message} onChange={handleChange} placeholder="Tell me about the role or project." className="contact-input resize-y" />
+            </label>
+            <button type="submit" disabled={loading} className="bg-accent hover:bg-accent/90 disabled:opacity-60 disabled:cursor-wait py-3 px-6 w-fit text-white font-bold rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent">
+              {loading ? 'Sending…' : 'Send message'}
+            </button>
+            <p role="status" aria-live="polite" className="text-secondary text-sm leading-6">{status}</p>
+          </form>
         </motion.div>
-      )}
-    </div>
+        {webGLSupported && !isMobile && (
+          <motion.div variants={slideIn("right", "tween", 0.2, 1)} className="xl:flex-1 min-w-0 xl:h-auto md:h-[550px] h-[350px]">
+            <EarthCanvas />
+          </motion.div>
+        )}
+      </div>
+    </>
   )
 }
 

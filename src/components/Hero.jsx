@@ -36,19 +36,48 @@ const Hero = () => {
 
   return (
     <section className="relative w-full h-screen mx-auto overflow-y-auto">
-      <div className={`${styles.paddingX} absolute inset-0 top-[75px] max-w-7xl mx-auto flex flex-row items-start gap-5`}> {/*Changed to top-[75px] from top-[120px]*/}
+      <div className={`${styles.paddingX} absolute inset-0 top-[75px] max-w-7xl mx-auto flex flex-row items-start gap-5 z-10 pointer-events-none`}> {/*Changed to top-[75px] from top-[120px]*/}
         <div className="flex flex-col justify-center items-center mt-5">
-          <div className="w-5 h-5 rounded-full bg-[#915eff]" />
+          <div className="w-5 h-5 rounded-full bg-accent" />
           <div className="w-1 sm:h-80 h-40 violet-gradient" />
         </div>
 
-        <div>
+        <div className="flex flex-col xl:flex-row xl:items-center gap-6 xl:gap-10 w-full min-w-0">
+          <div className="flex-1 min-w-0 pointer-events-auto">
+          <p className="text-accent text-[12px] sm:text-[14px] font-medium tracking-wider">
+            SOFTWARE ENGINEER • ORANGE COUNTY, CA
+          </p>
           <h1 className={`${styles.heroHeadText} text-white`}>
-            Hi, I'm <span className="text-[#915eff]">Scott</span>
+            Hi, I'm <span className="text-accent">Scott</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            I'm a video game engineer <br className="sm:block hidden" />and software developer.
+            I build interactive systems, AI integrations, <br className="sm:block hidden" />web applications, and video games.
           </p>
+          </div>
+          <div className="xl:w-[360px] shrink-0 pointer-events-auto" aria-label="Skills and profile links">
+            <p className="text-secondary text-[16px] sm:text-[18px] leading-7">
+              C++ · C# · Python · TypeScript · React
+            </p>
+            <div className="flex flex-wrap gap-4 mt-6">
+              <a
+                href="#projects"
+                className="bg-accent hover:bg-accent/90 text-white font-bold text-[14px] sm:text-[16px] px-5 py-3 rounded-lg transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+              >
+                Explore my work
+              </a>
+              <a
+                href="/resume"
+                className="bg-tertiary border border-accent hover:bg-[#241841] text-white font-bold text-[14px] sm:text-[16px] px-5 py-3 rounded-lg transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+              >
+                View resume
+              </a>
+            </div>
+            <div className="flex flex-wrap gap-5 mt-6 text-white text-[16px] sm:text-[18px]">
+              <a href="https://www.linkedin.com/in/scott-lopez-622bb832/" className="underline underline-offset-4 hover:text-accent">LinkedIn</a>
+              <a href="https://github.com/phiggs-dev" className="underline underline-offset-4 hover:text-accent">GitHub</a>
+              <a href="mailto:scottnlopez60@gmail.com" className="underline underline-offset-4 hover:text-accent">Email</a>
+            </div>
+          </div>
         </div>
       </div>
 

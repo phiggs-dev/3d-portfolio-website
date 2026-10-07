@@ -8,21 +8,36 @@ const About = () => {
   return (
     <>
       <motion.div variants={textVariant()}>
-        <p className={styles.sectionSubText}>Introduction</p>
-        <h2 className={styles.sectionHeadText}>Overview.</h2>
+        <p className={`${styles.sectionSubText} !text-accent`}>Introduction</p>
+        <h2 className={styles.sectionHeadText}>About Me.</h2>
       </motion.div>
 
-      <motion.p
+      <motion.div
         variants={fadeIn("", "", 0.1, 1)}
-        className="empty-4 text-secondary text-{17px] max-w-3xl leading-[30px]"
+        className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px] space-y-4"
       >
-        I&apos;m a versatile software developer with expertise in languages like
-        C, C++, C#, Python, and JavaScript, along with hands-on experience in
-        frameworks such as React, Node.js, and Three.js. My background also
-        includes work with leading game engines like Unreal Engine, Unity, and
-        Godot. I&apos;m a fast learner who excels in collaborative environments
-        and would be a valuable asset to any team!
-      </motion.p>
+        <p>
+          I’m a software engineer with paid experience delivering C++ and C#
+          applications and independent projects using React, TypeScript, and
+          Python. My work spans web applications, AI integrations, and
+          interactive experiences built with Unreal Engine and Unity.
+        </p>
+        <p>
+          In engagements for Logitech and inciteVR, I’ve taken responsibility
+          for translating client goals into technical plans, investigating
+          blockers, delivering working software, and supporting handoff.
+        </p>
+        <p>
+          I graduated from the University of Silicon Valley in August 2025 as
+          class valedictorian. Earlier work in construction coordination,
+          in-house IT support, and residential real estate adds practical
+          experience managing deadlines and client relationships.
+        </p>
+        <p>
+          Based in Orange County, California, I’m open to local on-site and
+          hybrid software engineering roles, as well as remote opportunities.
+        </p>
+      </motion.div>
     </>
   );
 };

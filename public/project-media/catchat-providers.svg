@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-label="CatChat: provider selection">
+<rect width="1200" height="900" rx="24" fill="#100d25"/>
+<g font-family="Arial, sans-serif">
+<text x="70" y="92" fill="#915eff" font-size="20" letter-spacing="3">IMPLEMENTATION OVERVIEW</text>
+<text x="70" y="156" fill="#ffffff" font-size="44" font-weight="700">CatChat: provider selection</text>
+<text x="70" y="201" fill="#aaa6c3" font-size="22">Switch services through validated configuration</text>
+<rect x="70" y="258" width="510" height="205" rx="20" fill="#1d1538" stroke="#915eff" stroke-opacity=".6"/>
+<text x="96" y="302" fill="#915eff" font-size="18">01</text>
+<text x="96" y="342" fill="#ffffff" font-size="27" font-weight="700">STT</text>
+<text x="96" y="381" fill="#ccc5df" font-size="21">Choose local Whisper or cloud Deepgram</text>
+<text x="96" y="408" fill="#ccc5df" font-size="21">speech recognition.</text>
+<rect x="620" y="258" width="510" height="205" rx="20" fill="#1d1538" stroke="#915eff" stroke-opacity=".6"/>
+<text x="646" y="302" fill="#915eff" font-size="18">02</text>
+<text x="646" y="342" fill="#ffffff" font-size="27" font-weight="700">LLM</text>
+<text x="646" y="381" fill="#ccc5df" font-size="21">Choose a local Ollama model or the</text>
+<text x="646" y="408" fill="#ccc5df" font-size="21">OpenAI API.</text>
+<rect x="70" y="503" width="510" height="205" rx="20" fill="#1d1538" stroke="#915eff" stroke-opacity=".6"/>
+<text x="96" y="547" fill="#915eff" font-size="18">03</text>
+<text x="96" y="587" fill="#ffffff" font-size="27" font-weight="700">TTS</text>
+<text x="96" y="626" fill="#ccc5df" font-size="21">Choose Piper, Cartesia, GPT-SoVITS,</text>
+<text x="96" y="653" fill="#ccc5df" font-size="21">Fish, or Chatterbox.</text>
+<rect x="620" y="503" width="510" height="205" rx="20" fill="#1d1538" stroke="#915eff" stroke-opacity=".6"/>
+<text x="646" y="547" fill="#915eff" font-size="18">04</text>
+<text x="646" y="587" fill="#ffffff" font-size="27" font-weight="700">Local-first defaults</text>
+<text x="646" y="626" fill="#ccc5df" font-size="21">Whisper + Ollama + Piper. Service</text>
+<text x="646" y="653" fill="#ccc5df" font-size="21">URLs, voices, and models are</text>
+<text x="646" y="680" fill="#ccc5df" font-size="21">configurable.</text>
+<text x="70" y="795" fill="#aaa6c3" font-size="21">Provider options are implementation features; availability depends on the</text>
+<text x="70" y="824" fill="#aaa6c3" font-size="21">configured services and models.</text>
+</g></svg>

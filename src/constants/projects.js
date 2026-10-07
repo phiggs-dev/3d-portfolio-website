@@ -8,7 +8,71 @@ import {
 
 const projects = [
   {
+    id: "devtechlife",
+    category: "web",
+    name: "DevTechLife",
+    description:
+      "A full-stack platform for discovering developer tools and practical technical guides. I built the Next.js, React, and TypeScript application with a Sanity content workflow and PostgreSQL data layer. The site includes searchable tool and article listings, filters, pagination, OAuth sign-in, saved bookmarks, and role-based access. My work also covers backend APIs, caching, structured metadata, and content automation.",
+    tags: [
+      { name: "next.js", color: "blue-text-gradient" },
+      { name: "react", color: "green-text-gradient" },
+      { name: "typescript", color: "pink-text-gradient" },
+      { name: "sanity", color: "orange-text-gradient" },
+      { name: "postgresql", color: "purple-text-gradient" },
+    ],
+    image: "/project-media/devtechlife-home-dark.jpg",
+    image1: "/project-media/devtechlife-tools-dark.jpg",
+    image2: "/project-media/devtechlife-articles-dark.jpg",
+    image3: "/project-media/devtechlife-tool-dark.jpg",
+    image4: "/project-media/devtechlife-article-dark.jpg",
+    image5: "/project-media/devtechlife-home-content-dark.jpg",
+    live_url: "https://devtechlife.com",
+    source_code_link: "None",
+  },
+  {
+    id: "leaptalkavatar",
+    category: "ai-tools",
+    name: "LeapTalkAvatar",
+    description:
+      "A local talking-avatar application that turns typed messages into spoken, animated replies. I built the FastAPI application and orchestration around local language models, speech synthesis, and the upstream LeapTalk renderer. The application manages conversation state, portraits, character sheets, optional continuity between replies, and GPU resource handoff. Its media assembly combines video with a continuous audio track to prevent drift from separately encoded chunks.",
+    tags: [
+      { name: "python", color: "blue-text-gradient" },
+      { name: "fastapi", color: "green-text-gradient" },
+      { name: "ollama", color: "pink-text-gradient" },
+      { name: "tts", color: "orange-text-gradient" },
+      { name: "ffmpeg", color: "purple-text-gradient" },
+    ],
+    image: "/project-media/leaptalkavatar-frame.png",
+    image1: "/project-media/leaptalkavatar-ui.png",
+    image2: "/project-media/leaptalkavatar-pipeline.svg",
+    image3: "/project-media/leaptalkavatar-controls.svg",
+    demo_video: "/project-media/leaptalkavatar-demo.mp4",
+    media_note: "Existing local demo output and UI capture, plus implementation diagrams. The AI models and LeapTalk renderer are upstream components; my work is the application and integration layer.",
+    source_code_link: "None",
+  },
+  {
+    id: "catchat",
+    category: "ai-tools",
+    name: "CatChat",
+    description:
+      "A browser-connected voice chatbot prototype built with Python and Pipecat. I integrated WebRTC audio with configurable speech recognition, language model, and speech synthesis providers, including local Whisper, Ollama, and Piper options. A custom HTTP speech adapter maps request fields and streams audio from additional local TTS services into the pipeline, with configuration validation and error handling.",
+    tags: [
+      { name: "python", color: "blue-text-gradient" },
+      { name: "pipecat", color: "green-text-gradient" },
+      { name: "webrtc", color: "pink-text-gradient" },
+      { name: "whisper", color: "orange-text-gradient" },
+      { name: "ollama", color: "purple-text-gradient" },
+    ],
+    image: "/project-media/catchat-pipeline.svg",
+    image_fit: "contain",
+    image1: "/project-media/catchat-providers.svg",
+    image2: "/project-media/catchat-adapter.svg",
+    media_note: "Architecture diagrams based on the implementation. This prototype runs locally; a public live demo is not hosted.",
+    source_code_link: "None",
+  },
+  {
     id: "brainstem",
+    category: "games",
     name: "Brainstem (prototype)",
     description:
       "<i>Brainstem</i> is a 2D side-scrolling action-adventure platformer created in Godot 4.2 using the GDScript programming language. The game combines original assets, including a custom-composed soundtrack for level two, with meticulously tailored graphics and audio sourced from Twitch.io and Pixabay.com, ensuring a cohesive and immersive player experience. Built to showcase fluid mechanics and dynamic environments, <i>Brainstem</i> reflects a strong foundation in game design, asset integration, and gameplay refinement.",
@@ -32,6 +96,7 @@ const projects = [
   },
   {
     id: "hostage",
+    category: "games",
     name: "Hostage Negotiation",
     description:
       "A custom single-player level in Unreal Engine 5, showcasing my skill in integrating environment design with engaging, combat-focused gameplay. Using Unreal's Landscape and Foliage systems, I developed a visually immersive terrain. The Blueprint system enabled fluid player interactions and combat mechanics, while custom enemy AI—built with Behavior Trees and Blackboards—provides challenging, adaptive gameplay. This project highlights my skill in uniting design elements and technical systems to create a seamless, interactive experience.",
@@ -56,6 +121,7 @@ const projects = [
   },
   {
     id: "shape-shooter",
+    category: "games",
     name: "Shape Shooter",
     description:
       "Shape Shooter is a fast-paced top-down shooting game where players control a cone that fires projectiles to fend off waves of enemy shapes. Each enemy type has unique behaviors, creating dynamic challenges as players advance through increasingly intense waves. With responsive controls and strategic gameplay, Shape Shooter combines simplicity with depth for an engaging, action-packed experience.",
@@ -76,6 +142,7 @@ const projects = [
   },
   {
     id: "ue5level",
+    category: "games",
     name: "Unreal Engine 5 Level",
     description:
       "This Unreal Engine 5 level highlights my skills in environment design, using Landscape and Foliage tools for immersive terrain and Blueprint systems for gameplay. Players engage with enemy bear AI, unlock doors by leveling up, and reach a win state by stepping on a pressure plate. The level includes custom UI elements like a HUD, pause, and main menus, along with audio cues, particle effects, and a cinematic flythrough at the start. This project demonstrates my ability to integrate design, gameplay, and UI for a cohesive, interactive experience.",
@@ -104,6 +171,7 @@ const projects = [
   },
   {
     id: "stenovate",
+    category: "ai-tools",
     name: "Stenovate Speech-to-Text",
     description:
       "Stenovate is an open-source speech-to-text application designed for fast, accurate transcription across multiple languages. Built on OpenAI's powerful Whisper model, Stenovate enables users to convert audio files into text with exceptional precision, ideal for professionals and multilingual environments. With a user-friendly interface, users can easily select audio files for transcription, customize save locations, and manage transcriptions seamlessly. Stenovate also includes custom file management and user-defined save directories, making it a reliable, versatile tool for accurate speech transcription in various workflows.",
