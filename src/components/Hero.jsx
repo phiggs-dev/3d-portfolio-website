@@ -58,6 +58,9 @@ const Hero = () => {
             <p className="text-secondary text-[16px] sm:text-[18px] leading-7">
               C++ · C# · Python · TypeScript · React
             </p>
+            <p className="text-secondary text-[16px] sm:text-[18px] leading-7 mt-1">
+              Unreal Engine · Unity · Wwise
+            </p>
             <div className="flex flex-wrap gap-4 mt-6">
               <a
                 href="#projects"

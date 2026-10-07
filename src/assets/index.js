@@ -37,6 +37,7 @@ import python from "./tech/python.png";
 import ue5black from "./tech/ue5black.png";
 import unityblack from "./tech/unityblack.png";
 import godotnotext from "./tech/godotnotext.png";
+import wwise from "./tech/wwise.png";
 
 // Company
 import meta from "./company/meta.png";
@@ -140,6 +141,7 @@ export {
   ue5black,
   godot,
   godotnotext,
+  wwise,
   unity,
   unityblack,
   // Company

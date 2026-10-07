@@ -1,4 +1,5 @@
 import Tilt from "react-parallax-tilt";
+import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 
@@ -8,12 +9,32 @@ import { styles } from "../styles";
 
 const ServiceCard = () => {
   const reducedMotion = useReducedMotion();
+  const [tiltPreference, setTiltPreference] = useState(() => {
+    try {
+      const savedPreference = localStorage.getItem("portfolio-card-tilt");
+      return savedPreference === "on" ? true : savedPreference === "off" ? false : null;
+    } catch {
+      return null;
+    }
+  });
+  const tiltEnabled = tiltPreference ?? (reducedMotion === false);
+
+  const toggleCardTilt = () => {
+    const nextPreference = !tiltEnabled;
+    setTiltPreference(nextPreference);
+    try {
+      localStorage.setItem("portfolio-card-tilt", nextPreference ? "on" : "off");
+    } catch {
+      // Keep the visitor's choice for this visit when storage is unavailable.
+    }
+  };
   return (
     <section
       id="capabilities"
       aria-labelledby="capabilities-heading"
       className={`${styles.padding} max-w-7xl mx-auto relative`}
     >
+      <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5">
       <motion.div
         initial={reducedMotion ? false : "hidden"}
         whileInView="show"
@@ -23,6 +44,20 @@ const ServiceCard = () => {
         <p className={`${styles.sectionSubText} !text-accent`}>Capabilities</p>
         <h2 id="capabilities-heading" className={styles.sectionHeadText}>What I build.</h2>
       </motion.div>
+      <button
+        type="button"
+        role="switch"
+        aria-checked={tiltEnabled}
+        aria-label="Card tilt"
+        onClick={toggleCardTilt}
+        className="inline-flex items-center gap-3 self-start sm:self-auto sm:mb-3 text-secondary text-sm rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+      >
+        <span>Card tilt</span>
+        <span aria-hidden="true" className={`relative inline-flex w-10 h-6 rounded-full border ${tiltEnabled ? "bg-accent border-accent" : "bg-tertiary border-secondary/50"}`}>
+          <span className={`absolute top-[3px] w-4 h-4 rounded-full bg-white ${tiltEnabled ? "left-[19px]" : "left-[3px]"}`} />
+        </span>
+      </button>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
       {services.map((service, index) => {
         const Icon = service.icon;
@@ -32,7 +67,7 @@ const ServiceCard = () => {
         <Tilt
           key={service.title}
           className="w-full h-full"
-          tiltEnable={!reducedMotion}
+          tiltEnable={tiltEnabled}
           tiltMaxAngleX={12}
           tiltMaxAngleY={12}
           scale={1}

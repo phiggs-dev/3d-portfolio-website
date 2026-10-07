@@ -9,6 +9,11 @@ import {
 const projects = [
   {
     id: "devtechlife",
+    summary: "A technology content and developer-tools platform with a React interface, content workflows, and database-backed features.",
+    status: "Live website",
+    contributions: ["Designed and developed searchable, filterable content and developer-tool listings.", "Implemented authentication, bookmarks, user profiles, access levels, and backend APIs.", "Integrated Sanity publishing workflows, content caching, and scheduled maintenance."],
+    decisions: ["Used a headless CMS to separate editorial work from application development.", "Connected OAuth authentication with PostgreSQL-backed application features."],
+    statusNote: "Public website with searchable content, developer-tool listings, and account features.",
     category: "web",
     name: "DevTechLife",
     description:
@@ -31,6 +36,11 @@ const projects = [
   },
   {
     id: "leaptalkavatar",
+    summary: "An application layer coordinating language-model responses, speech synthesis, and avatar-video generation using existing models.",
+    status: "Local personal application",
+    contributions: ["Implemented conversation state, API orchestration, and error handling.", "Coordinated speech and avatar output with timing and GPU resource management.", "Added application tests and validation workflows."],
+    decisions: ["Integrated existing models with custom application and workflow logic.", "Managed resource lifecycles to support sequential local generation."],
+    statusNote: "Local talking-avatar application. The gallery includes existing demo output and a UI capture; the AI models and LeapTalk renderer are upstream components.",
     category: "ai-tools",
     name: "LeapTalkAvatar",
     description:
@@ -52,6 +62,11 @@ const projects = [
   },
   {
     id: "catchat",
+    summary: "A configurable voice-chat pipeline connecting speech recognition, language models, and speech synthesis through Pipecat and WebRTC.",
+    status: "Local personal application",
+    contributions: ["Connected local and cloud STT, LLM, and TTS providers.", "Implemented a custom HTTP adapter for local speech-generation services.", "Added provider configuration and validation."],
+    decisions: ["Built around existing Pipecat components and provider APIs rather than training original models.", "Supported interchangeable providers for local and cloud workflows."],
+    statusNote: "Local voice-chat prototype. The gallery contains implementation diagrams; a public live demo is not hosted.",
     category: "ai-tools",
     name: "CatChat",
     description:
@@ -72,6 +87,11 @@ const projects = [
   },
   {
     id: "brainstem",
+    summary: "A Godot platformer prototype combining gameplay development, asset integration, and a custom-composed soundtrack.",
+    status: "Student project / prototype",
+    contributions: ["A Godot platformer prototype combining gameplay development, asset integration, and a custom-composed soundtrack."],
+    decisions: ["Combined existing engines or frameworks with custom application logic and integrated assets."],
+    statusNote: "Student project / prototype, documented through screenshots and available demonstrations.",
     category: "games",
     name: "Brainstem (prototype)",
     description:
@@ -96,10 +116,15 @@ const projects = [
   },
   {
     id: "hostage",
+    summary: "An Unreal Engine level integrating Blueprint interactions, combat, and enemy AI using Behavior Trees and Blackboards.",
+    status: "Student project / prototype",
+    contributions: ["An Unreal Engine level integrating Blueprint interactions, combat, and enemy AI using Behavior Trees and Blackboards."],
+    decisions: ["Combined existing engines or frameworks with custom application logic and integrated assets."],
+    statusNote: "Student project / prototype, documented through screenshots and available demonstrations.",
     category: "games",
     name: "Hostage Negotiation",
     description:
-      "A custom single-player level in Unreal Engine 5, showcasing my skill in integrating environment design with engaging, combat-focused gameplay. Using Unreal's Landscape and Foliage systems, I developed a visually immersive terrain. The Blueprint system enabled fluid player interactions and combat mechanics, while custom enemy AI—built with Behavior Trees and Blackboards—provides challenging, adaptive gameplay. This project highlights my skill in uniting design elements and technical systems to create a seamless, interactive experience.",
+      "A custom single-player level in Unreal Engine 5, showcasing my skill in integrating environment design with engaging, combat-focused gameplay. Using Unreal's Landscape and Foliage systems, I developed a visually immersive terrain. The Blueprint system enabled fluid player interactions and combat mechanics, while custom enemy AIâ€”built with Behavior Trees and Blackboardsâ€”provides challenging, adaptive gameplay. This project highlights my skill in uniting design elements and technical systems to create a seamless, interactive experience.",
     tags: [
       { name: "unreal engine", color: "blue-text-gradient" },
       { name: "mixamo", color: "green-text-gradient" },
@@ -121,6 +146,11 @@ const projects = [
   },
   {
     id: "shape-shooter",
+    summary: "An Unreal Engine C++ project implementing player controls, projectile combat, and enemy behaviors.",
+    status: "Student project / prototype",
+    contributions: ["An Unreal Engine C++ project implementing player controls, projectile combat, and enemy behaviors."],
+    decisions: ["Combined existing engines or frameworks with custom application logic and integrated assets."],
+    statusNote: "Student project / prototype, documented through screenshots and available demonstrations.",
     category: "games",
     name: "Shape Shooter",
     description:
@@ -142,6 +172,11 @@ const projects = [
   },
   {
     id: "ue5level",
+    summary: "An Unreal Engine level combining terrain, enemy AI, progression, UI, and audiovisual feedback.",
+    status: "Student project / prototype",
+    contributions: ["An Unreal Engine level combining terrain, enemy AI, progression, UI, and audiovisual feedback."],
+    decisions: ["Combined existing engines or frameworks with custom application logic and integrated assets."],
+    statusNote: "Student project / prototype, documented through screenshots and available demonstrations.",
     category: "games",
     name: "Unreal Engine 5 Level",
     description:
@@ -171,6 +206,11 @@ const projects = [
   },
   {
     id: "stenovate",
+    summary: "A Python desktop interface around OpenAI Whisper for file transcription and user-selected output locations.",
+    status: "Personal project",
+    contributions: ["A Python desktop interface around OpenAI Whisper for file transcription and user-selected output locations."],
+    decisions: ["Combined existing engines or frameworks with custom application logic and integrated assets."],
+    statusNote: "Open-source desktop transcription application built around OpenAI Whisper.",
     category: "ai-tools",
     name: "Stenovate Speech-to-Text",
     description:

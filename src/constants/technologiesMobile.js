@@ -1,4 +1,4 @@
-import { ue5, unityblack, cplus, csharp, python, typescript, reactjs, git } from "../assets";
+import { ue5, unityblack, cplus, csharp, python, typescript, reactjs, git, wwise } from "../assets";
 
 const technologiesMobile = [
   { name: "Unreal Engine", icon: ue5 },
@@ -9,6 +9,7 @@ const technologiesMobile = [
   { name: "TypeScript", icon: typescript },
   { name: "React", icon: reactjs },
   { name: "Git", icon: git },
+  { name: "Wwise", icon: wwise },
 ];
 
 export default technologiesMobile;
