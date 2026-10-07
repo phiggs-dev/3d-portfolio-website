@@ -62,7 +62,7 @@ const ServiceCard = () => {
       {services.map((service, index) => {
         const Icon = service.icon;
         const linkClass = "capability-link text-accent text-[14px] font-medium mt-6 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent";
-        const linkContent = <>Explore related projects <span aria-hidden="true">↗</span><span className="sr-only"> for {service.title}</span></>;
+        const linkContent = <>View project details <span aria-hidden="true">→</span><span className="sr-only"> for {service.title}</span></>;
         return (
         <Tilt
           key={service.title}

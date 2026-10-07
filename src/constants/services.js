@@ -13,21 +13,21 @@ const services = [
     icon: FaRobot,
     description: "Applications connecting language models, speech recognition, and speech synthesis through local and cloud APIs.",
     tools: "Python · LLMs · Speech APIs",
-    href: "/projects/stenovate",
+    href: "/projects/catchat",
   },
   {
     title: "Web Applications",
     icon: FaCode,
     description: "Interactive interfaces, backend APIs, authentication, and database-backed features for useful web applications.",
     tools: "React · TypeScript · Next.js",
-    href: "https://devtechlife.com",
+    href: "/projects/devtechlife",
   },
   {
     title: "Tools & Automation",
     icon: FaCogs,
     description: "Practical tools that connect services, simplify repetitive work, and make technical workflows easier to use.",
     tools: "Python · APIs · Workflow tooling",
-    href: "https://github.com/phiggs-dev/stenovate",
+    href: "/projects/stenovate",
   },
 ];
 
