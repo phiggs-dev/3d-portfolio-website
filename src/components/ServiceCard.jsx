@@ -1,5 +1,5 @@
 import Tilt from "react-parallax-tilt";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 
@@ -9,6 +9,18 @@ import { styles } from "../styles";
 
 const ServiceCard = () => {
   const reducedMotion = useReducedMotion();
+  const [canHover, setCanHover] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const updateHoverSupport = () => setCanHover(mediaQuery.matches);
+    updateHoverSupport();
+    mediaQuery.addEventListener("change", updateHoverSupport);
+    return () => mediaQuery.removeEventListener("change", updateHoverSupport);
+  }, []);
+
+  // Touch visitors get a plain card so swipes stay native scrolling gestures.
+  const CardContainer = canHover ? Tilt : "div";
   const [tiltPreference, setTiltPreference] = useState(() => {
     try {
       const savedPreference = localStorage.getItem("portfolio-card-tilt");
@@ -32,7 +44,7 @@ const ServiceCard = () => {
     <section
       id="capabilities"
       aria-labelledby="capabilities-heading"
-      className={`${styles.padding} max-w-7xl mx-auto relative`}
+      className={`${styles.padding} max-w-7xl mx-auto relative !overflow-visible`}
     >
       <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5">
       <motion.div
@@ -64,14 +76,16 @@ const ServiceCard = () => {
         const linkClass = "capability-link text-accent text-[14px] font-medium mt-6 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent";
         const linkContent = <>View project details <span aria-hidden="true">→</span><span className="sr-only"> for {service.title}</span></>;
         return (
-        <Tilt
+        <CardContainer
           key={service.title}
-          className="w-full h-full"
-          tiltEnable={tiltEnabled}
-          tiltMaxAngleX={12}
-          tiltMaxAngleY={12}
-          scale={1}
-          transitionSpeed={450}
+          className="w-full h-full touch-pan-y"
+          {...(canHover ? {
+            tiltEnable: tiltEnabled,
+            tiltMaxAngleX: 12,
+            tiltMaxAngleY: 12,
+            scale: 1,
+            transitionSpeed: 450,
+          } : {})}
         >
           <motion.div
             initial={reducedMotion ? false : "hidden"}
@@ -98,7 +112,7 @@ const ServiceCard = () => {
               </div>
             </div>
           </motion.div>
-        </Tilt>
+        </CardContainer>
         );
       })}
       </div>
