@@ -35,8 +35,8 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative w-full h-screen mx-auto overflow-y-auto">
-      <div className={`${styles.paddingX} absolute inset-0 top-[75px] max-w-7xl mx-auto flex flex-row items-start gap-5 z-10 pointer-events-none`}> {/*Changed to top-[75px] from top-[120px]*/}
+    <section className="relative w-full min-h-screen xl:h-screen mx-auto !overflow-visible">
+      <div className={`${styles.paddingX} relative pt-[90px] xl:absolute xl:inset-0 xl:top-[75px] xl:pt-0 max-w-7xl mx-auto flex flex-row items-start gap-5 z-10 pointer-events-none`}> {/*Changed to top-[75px] from top-[120px]*/}
         <div className="flex flex-col justify-center items-center mt-5">
           <div className="w-5 h-5 rounded-full bg-accent" />
           <div className="w-1 sm:h-80 h-40 violet-gradient" />
@@ -84,10 +84,12 @@ const Hero = () => {
         </div>
       </div>
 
-      <ComputersCanvas />
+      <div className="hero-model relative h-[300px] sm:h-[420px] xl:h-full xl:absolute xl:inset-0">
+        <ComputersCanvas />
+      </div>
 
       {/* Scroll Button */}
-      <div className={"absolute xs:bottom-10 bottom-24 w-full flex flex-col justify-center items-center"}>
+      <div className={"relative pb-10 xl:pb-0 xl:absolute xl:bottom-10 w-full flex flex-col justify-center items-center"}>
         {/* <a href="#about">
           <div className="w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2">
             <motion.div
